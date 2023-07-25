@@ -38,7 +38,8 @@ module.exports = defineConfig((context) => {
                 presets: [
                     '@babel/preset-react',
                     '@babel/preset-typescript'
-                ]
+                ],
+                extensions: ['.tsx','.ts','.jsx','.mjs','.js']
             }),
             pluginHtml({
                 title: 'Package rollup test'
@@ -51,6 +52,7 @@ module.exports = defineConfig((context) => {
             })
         ],
         external: [],
-        preserveEntrySignatures: 'allow-extension'
+        preserveEntrySignatures: 'allow-extension',
+        watch: isDevMode
     }
 })
