@@ -7,9 +7,11 @@
     "@rollup/plugin-html": "^1.0.2",
     "live-server": "^1.2.2",
     "rollup": "^3.26.3",
-    "rollup-plugin-cleaner": "^1.0.0"
+    "rollup-plugin-cleaner": "^1.0.0",
+    "rollup-plugin-multi-input": "^1.4.1"
   },
   "scripts": {
-    "build": "rollup --config --environment production"
+    "build": "rollup --config --environment production",
+    "live": "live-server ./build --port=3000 --open=false "
   }
 }

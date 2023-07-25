@@ -6,10 +6,11 @@ const pluginHtml = require('@rollup/plugin-html');
 
 module.exports = defineConfig((context) => {
     const isDevMode = context.environment === 'development';
-    console.log(isDevMode);
+    // console.log(isDevMode);
     return {
         input: {
-            index: path.resolve(process.cwd(),'./src/index.js')
+            index: path.resolve(process.cwd(),'./src/index.js'),
+            main: path.resolve(process.cwd(),'./src/main.js')
         },
         output: {
             dir: path.resolve(process.cwd(),'./build'),
@@ -17,15 +18,16 @@ module.exports = defineConfig((context) => {
             entryFileNames: 'assets/js/[name].[hash:6].bundle.js',
             assetFileNames: 'assets/css/[name].[hash:6].bundle.[ext]',
             chunkFileNames: '[name].chunks.bundle.js',
-            format: 'iife',
+            format: 'umd',
             name: packageJson.name,
-            exports: 'auto'
+            exports: 'auto',
+            inlineDynamicImports: false
         },
         plugins: [
             pluginCleaner({
                 targets: [path.resolve(process.cwd(),'./build')]
             }),
-            pluginHtml()
+            pluginHtml(),
         ]
     }
 })
