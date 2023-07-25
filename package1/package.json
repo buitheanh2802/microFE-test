@@ -4,7 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "rollup": "^3.26.3"
+    "@rollup/plugin-html": "^1.0.2",
+    "live-server": "^1.2.2",
+    "rollup": "^3.26.3",
+    "rollup-plugin-cleaner": "^1.0.0"
   },
   "scripts": {
     "build": "rollup --config --environment production"
