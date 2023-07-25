@@ -4,3 +4,6 @@ vấn đề của rollup (default):
     + không bundle code mỗi khi build, rollup hướng đến những trình duyệt hiện đại và core sử dụng syntax es6
     + chỉ khi dùng những cú pháp es6 thì những module mới được kéo vào entrypoint còn commonJS thì không
     + để khắc phục vấn đề transform từ commonJS to esModule sử dụng @rollup/plugin-commonJS
+    + con plugin devserver của rollup khá tệ và cả con html rollup cũng vậy.
+    + vấn đề dev của rollup không được tối ưu đó là lí do tại sao Vite lại chọn rollup làm core build của nó
+    + vấn đề external module library của rollup gặp vấn đề khi trình duyệt không thể find được url của module dependencies
