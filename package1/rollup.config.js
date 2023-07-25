@@ -6,6 +6,7 @@ const pluginCommonJs = require('@rollup/plugin-commonjs');
 const pluginServe = require('rollup-plugin-serve');
 const pluginHtml = require('@rollup/plugin-html');
 const { babel: pluginBabel } = require('@rollup/plugin-babel');
+const pluginResolve = require('@rollup/plugin-node-resolve');
 
 module.exports = defineConfig((context) => {
     const isDevMode = context.environment === 'development';
@@ -16,7 +17,7 @@ module.exports = defineConfig((context) => {
         },
         output: {
             dir: path.resolve(process.cwd(),'./build'),
-            esModule: 'if-default-prop',
+            esModule: "if-default-prop",
             entryFileNames: 'assets/js/[name].[hash:6].bundle.js',
             assetFileNames: 'assets/css/[name].[hash:6].bundle.[ext]',
             chunkFileNames: '[name].chunks.bundle.js',
@@ -26,20 +27,33 @@ module.exports = defineConfig((context) => {
             // inlineDynamicImports: true,
             footer: '/* Power by Bui The Anh. */',
             // preserveModules: true,
-            sourcemap: false
+            sourcemap: false,
+            generatedCode: {
+                arrowFunctions: false,
+                constBindings: false,
+                objectShorthand: false,
+                reservedNamesAsProps: false,
+                preset: 'es5',
+                symbols: false
+            }
         },
         plugins: [
             pluginCleaner({
                 targets: [path.resolve(process.cwd(),'./build')]
             }),
             pluginCommonJs(),
+            pluginResolve({
+                rootDir: path.resolve(process.cwd()),
+                extensions: ['.tsx','.ts','.jsx','.mjs','.js']
+            }),
             pluginBabel({
                 babelrc: false,
                 presets: [
                     '@babel/preset-react',
                     '@babel/preset-typescript'
                 ],
-                extensions: ['.tsx','.ts','.jsx','.mjs','.js']
+                extensions: ['.tsx','.ts','.jsx','.mjs','.js'],
+                babelHelpers: 'bundled'
             }),
             pluginHtml({
                 title: 'Package rollup test'
@@ -51,7 +65,7 @@ module.exports = defineConfig((context) => {
                 contentBase: path.resolve(process.cwd(),'./build')
             })
         ],
-        external: [],
+        external: ['react','react-dom'],
         preserveEntrySignatures: 'allow-extension',
         watch: isDevMode
     }
