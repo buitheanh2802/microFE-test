@@ -1,0 +1,33 @@
+{
+    "compilerOptions": {
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "target": "ES6",
+        "allowJs": true,
+        "outDir": "./build",
+        "baseUrl": "./",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "allowUnusedLabels": true,
+        "checkJs": false,
+        "jsx": "react",
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noImplicitOverride": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "skipDefaultLibCheck": true,
+        "skipLibCheck": true,
+        "paths": {
+
+        },
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "resolveJsonModule": true,
+        "allowImportingTsExtensions": true,
+        "noEmit": true
+    },
+    "exclude": ["node_modules"],
+    "include": ["./src/**/*"]
+}

@@ -2,16 +2,17 @@ const { defineConfig } = require('rollup');
 const path = require('path');
 const packageJson = require('./package.json');
 const pluginCleaner = require('rollup-plugin-cleaner');
+const pluginCommonJs = require('@rollup/plugin-commonjs');  
+const pluginServe = require('rollup-plugin-serve');
 const pluginHtml = require('@rollup/plugin-html');
-const pluginCommonJs = require('@rollup/plugin-commonjs');
+const { babel: pluginBabel } = require('@rollup/plugin-babel');
 
 module.exports = defineConfig((context) => {
     const isDevMode = context.environment === 'development';
-    // console.log(isDevMode);
     return {
         input: {
-            index: path.resolve(process.cwd(),'./src/index.js'),
-            main: path.resolve(process.cwd(),'./src/main.js')
+            index: path.resolve(process.cwd(),'./src/index.tsx'),
+            // main: path.resolve(process.cwd(),'./src/main.js')
         },
         output: {
             dir: path.resolve(process.cwd(),'./build'),
@@ -23,7 +24,7 @@ module.exports = defineConfig((context) => {
             name: packageJson.name,
             exports: 'auto',
             // inlineDynamicImports: true,
-            footer: '/* follow me on Twitter! @rich_harris */',
+            footer: '/* Power by Bui The Anh. */',
             // preserveModules: true,
             sourcemap: false
         },
@@ -31,8 +32,23 @@ module.exports = defineConfig((context) => {
             pluginCleaner({
                 targets: [path.resolve(process.cwd(),'./build')]
             }),
-            pluginHtml(),
-            pluginCommonJs()
+            pluginCommonJs(),
+            pluginBabel({
+                babelrc: false,
+                presets: [
+                    '@babel/preset-react',
+                    '@babel/preset-typescript'
+                ]
+            }),
+            pluginHtml({
+                title: 'Package rollup test'
+            }),
+            isDevMode && pluginServe({
+                historyApiFallback: true,
+                port: 3000,
+                open: false,
+                contentBase: path.resolve(process.cwd(),'./build')
+            })
         ],
         external: [],
         preserveEntrySignatures: 'allow-extension'

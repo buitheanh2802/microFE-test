@@ -12,5 +12,6 @@
   "scripts": {
     "dev": "lerna start",
     "build": "lerna build"
-  }
+  },
+  "private": true
 }

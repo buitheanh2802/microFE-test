@@ -4,15 +4,28 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.5",
+    "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-commonjs": "^25.0.3",
     "@rollup/plugin-html": "^1.0.2",
-    "live-server": "^1.2.2",
+    "@types/react": "^18.2.16",
+    "@types/react-dom": "^18.2.7",
+    "live-server": "git+https://github.com/tapio/live-server.git#ad22544",
     "rollup": "^3.26.3",
     "rollup-plugin-cleaner": "^1.0.0",
-    "rollup-plugin-multi-input": "^1.4.1"
+    "rollup-plugin-multi-input": "^1.4.1",
+    "rollup-plugin-serve": "^2.0.2"
   },
   "scripts": {
     "build": "rollup --config --environment production",
-    "live": "live-server ./build --port=3000 --open=false "
+    "live": "live-server ./build --port=3000",
+    "dev": "rollup --config --environment development"
+  },
+  "dependencies": {
+    "jquery": "^3.7.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
