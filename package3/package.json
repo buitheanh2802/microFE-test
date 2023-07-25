@@ -1,0 +1,9 @@
+{
+  "name": "package3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^4.4.7"
+  }
+}
