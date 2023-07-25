@@ -5,11 +5,13 @@ const pluginCleaner = require('rollup-plugin-cleaner');
 const pluginCommonJs = require('@rollup/plugin-commonjs');  
 const pluginServe = require('rollup-plugin-serve');
 const pluginHtml = require('@rollup/plugin-html');
-const { babel: pluginBabel } = require('@rollup/plugin-babel');
+const pluginBabel = require('@rollup/plugin-babel');
 const pluginResolve = require('@rollup/plugin-node-resolve');
+const fs = require('fs');
 
 module.exports = defineConfig((context) => {
     const isDevMode = context.environment === 'development';
+    const current_work_directory = process.cwd();
     return {
         input: {
             index: path.resolve(process.cwd(),'./src/index.tsx'),
@@ -53,10 +55,24 @@ module.exports = defineConfig((context) => {
                     '@babel/preset-typescript'
                 ],
                 extensions: ['.tsx','.ts','.jsx','.mjs','.js'],
-                babelHelpers: 'bundled'
+                babelHelpers: 'bundled',
+                sourceType: 'unambiguous'
             }),
             pluginHtml({
-                title: 'Package rollup test'
+                title: 'Package rollup test',
+                template: (context) => {
+                    console.log(current_work_directory);
+                    for(const file_data in context.bundle){
+                        // console.log(context.bundle[file_data]);
+                        // context.bundle[file_data].imports.forEach(data => {
+                        //     context.bundle[file_data].code.replace('from ')
+                        // })
+                    }
+                    const html_file = fs.readFileSync(path.resolve(process.cwd(),'./src/index.html'),"utf-8");
+                    return html_file;
+                },
+                filename: 'index.html',
+                publicPath: '/'
             }),
             isDevMode && pluginServe({
                 historyApiFallback: true,
@@ -65,7 +81,7 @@ module.exports = defineConfig((context) => {
                 contentBase: path.resolve(process.cwd(),'./build')
             })
         ],
-        external: ['react','react-dom'],
+        external: ['react',/react-dom\/*/,'lodash'],
         preserveEntrySignatures: 'allow-extension',
         watch: isDevMode
     }

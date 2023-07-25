@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import { chunk } from "lodash";
 
 const App = () => {
-    return (
-        <div className="app-wrapper">
-            
-        </div>
-    );
+  useEffect(() => {
+    console.log("hello app");
+    console.log(chunk);
+  }, []);
+
+  return <div className="app-wrapper"></div>;
 };
 
 export default App;
