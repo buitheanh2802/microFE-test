@@ -1,0 +1,5 @@
+vấn đề của rollup (default): 
+    + khi sử dụng module commonJS mà dùng cú pháp import module sẽ dẫn đến lỗi khi biên dịch từ commonJS to esModule
+    + khi sử dụng multiple entry bị gặp vấn đề khi export dạng thư viện như umd hay là iife
+    + không bundle code mỗi khi build, rollup hướng đến những trình duyệt hiện đại và core sử dụng syntax es6
+    + chỉ khi dùng những cú pháp es6 thì những module mới được kéo vào entrypoint còn commonJS thì không

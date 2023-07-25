@@ -18,8 +18,8 @@ module.exports = defineConfig((context) => {
             entryFileNames: 'assets/js/[name].[hash:6].bundle.js',
             assetFileNames: 'assets/css/[name].[hash:6].bundle.[ext]',
             chunkFileNames: '[name].chunks.bundle.js',
-            format: 'umd',
-            name: packageJson.name,
+            format: 'es',
+            // name: packageJson.name,
             exports: 'auto',
             inlineDynamicImports: false
         },

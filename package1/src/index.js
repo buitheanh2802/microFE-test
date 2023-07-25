@@ -1,5 +1,5 @@
-// const parse = require('./modules/parse')
-import parse from './modules/parse';
+const parse = require('./modules/parse')
+// import parse from './modules/parse';
 
 const person = {
     name: 'Bui The Anh',
@@ -13,4 +13,6 @@ const configurations = () => {
     console.log(parse);
 }
 
-module.exports = configurations
+console.log(configurations);
+
+export default configurations;

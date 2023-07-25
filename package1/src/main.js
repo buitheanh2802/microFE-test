@@ -4,6 +4,6 @@
 
 
 
-module.exports = () => {
-    console.log('ok');
-}
+// module.exports = () => {
+//     console.log('ok');
+// }

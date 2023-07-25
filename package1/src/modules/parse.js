@@ -6,4 +6,4 @@ const parse = {
 }
 
 
-export default parse
+module.exports = parse
