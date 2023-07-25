@@ -19,10 +19,13 @@ module.exports = defineConfig((context) => {
             entryFileNames: 'assets/js/[name].[hash:6].bundle.js',
             assetFileNames: 'assets/css/[name].[hash:6].bundle.[ext]',
             chunkFileNames: '[name].chunks.bundle.js',
-            format: 'umd',
+            format: 'es',
             name: packageJson.name,
             exports: 'auto',
-            inlineDynamicImports: true
+            // inlineDynamicImports: true,
+            footer: '/* follow me on Twitter! @rich_harris */',
+            // preserveModules: true,
+            sourcemap: false
         },
         plugins: [
             pluginCleaner({
@@ -31,6 +34,7 @@ module.exports = defineConfig((context) => {
             pluginHtml(),
             pluginCommonJs()
         ],
-        external: []
+        external: [],
+        preserveEntrySignatures: 'allow-extension'
     }
 })
