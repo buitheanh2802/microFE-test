@@ -1,5 +1,5 @@
-const parse = require('./modules/parse')
-// import parse from './modules/parse';
+// const parse = require('./modules/parse')
+import parse from './modules/parse';
 
 const person = {
     name: 'Bui The Anh',

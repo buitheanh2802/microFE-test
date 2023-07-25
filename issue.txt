@@ -3,3 +3,4 @@ vấn đề của rollup (default):
     + khi sử dụng multiple entry bị gặp vấn đề khi export dạng thư viện như umd hay là iife
     + không bundle code mỗi khi build, rollup hướng đến những trình duyệt hiện đại và core sử dụng syntax es6
     + chỉ khi dùng những cú pháp es6 thì những module mới được kéo vào entrypoint còn commonJS thì không
+    + để khắc phục vấn đề transform từ commonJS to esModule sử dụng @rollup/plugin-commonJS
