@@ -1,5 +1,4 @@
-import chunk from "lodash";
-// import { parserDate } from "./modules/parser";
+import _ from "lodash";
 
 const person = {
     name: "Bui The Anh",
@@ -10,8 +9,8 @@ const person = {
 const configurations = () => {
     // console.log(process.env.NODE_ENV);
     console.log(person);
-    console.log(chunk);
-    // console.log(parserDate);
+    console.log(_);
+    // console.log(initSlides);
 }
 
 configurations();

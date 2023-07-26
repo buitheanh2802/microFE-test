@@ -63,7 +63,7 @@ module.exports = defineConfig((context) => {
                 template: (context) => {
                     // console.log(current_work_directory);
                     for(const file_data in context.bundle){
-                        // console.log(context.bundle[file_data]);
+                        console.log(context.bundle[file_data]);
                         // context.bundle[file_data].imports.forEach(data => {
                         //     context.bundle[file_data].code.replace('from ')
                         // })

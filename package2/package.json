@@ -13,7 +13,8 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "swiper": "^10.0.4"
   },
   "scripts": {
     "build": "webpack --mode production",
