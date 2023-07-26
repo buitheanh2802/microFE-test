@@ -9,7 +9,7 @@ const person = {
 
 const configurations = () => {
     // console.log(process.env.NODE_ENV);
-    // console.log(person);
+    console.log(person);
     console.log(chunk);
     // console.log(parserDate);
 }
