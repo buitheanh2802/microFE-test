@@ -61,7 +61,7 @@ module.exports = defineConfig((context) => {
             pluginHtml({
                 title: 'Package rollup test',
                 template: (context) => {
-                    console.log(current_work_directory);
+                    // console.log(current_work_directory);
                     for(const file_data in context.bundle){
                         // console.log(context.bundle[file_data]);
                         // context.bundle[file_data].imports.forEach(data => {

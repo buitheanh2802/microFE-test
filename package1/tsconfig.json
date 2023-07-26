@@ -25,6 +25,9 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "resolveJsonModule": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ]
         // "allowImportingTsExtensions": true,
         // "noEmit": true
     },
