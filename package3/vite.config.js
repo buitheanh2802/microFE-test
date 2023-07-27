@@ -2,7 +2,6 @@ import { defineConfig } from "vite";
 import path from "path";
 
 
-
 export default defineConfig(({ command, ssrBuild, mode}) => {
     const isDevMode = mode === 'development';
     console.log(isDevMode);

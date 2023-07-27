@@ -1,7 +1,6 @@
 const Webpack = require("webpack");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+// const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { ModifySourcePlugin } = require("modify-source-webpack-plugin");
 const path = require("path");
 
 module.exports = (env, args) => {
@@ -20,15 +19,18 @@ module.exports = (env, args) => {
     output: {
       path: path.resolve(process.cwd(), "./build"),
       publicPath: "auto",
-      filename: "assets/js/[name].[contenthash:6].bundle.js",
+    //   filename: "assets/js/[name].[contenthash:6].bundle.js",
     },
     plugins: [
       // new Webpack.ProgressPlugin(),
       new Webpack.container.ModuleFederationPlugin({
-        name: 'package2',
-        remotes: {
-          package4: "package4@http://localhost:3001/remoteEntry.js"
-        }
+        name: 'package4',
+        // remoteType: ,
+        filename: 'remoteEntry.js',
+        // runtime: 'package3',
+        exposes: {
+            './package4': path.resolve(process.cwd(),'./src/index.js')
+        },
       }),
       new HtmlWebpackPlugin({
         filename: "index.html",
@@ -37,7 +39,7 @@ module.exports = (env, args) => {
         template: path.resolve(process.cwd(), "./src/index.html"),
         scriptLoading: "module",
       }),
-      //   new MyCustomHooksPlugins(),
+      //  new MyCustomHooksPlugins(),
       // new CleanWebpackPlugin({}),
       // new ModifySourcePlugin({
       //     rules: [{
@@ -58,7 +60,7 @@ module.exports = (env, args) => {
       topLevelAwait: true,
     },
     devServer: {
-      port: 3000,
+      port: 3001,
       hot: true,
       host: "0.0.0.0",
       allowedHosts: "all",

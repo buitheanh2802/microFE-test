@@ -1,4 +1,4 @@
-import _ from "lodash";
+// import _ from "lodash";
 
 const person = {
     name: "Bui The Anh",
@@ -9,7 +9,10 @@ const person = {
 const configurations = () => {
     // console.log(process.env.NODE_ENV);
     console.log(person);
-    console.log(_);
+    import('package4/package4').then(data => {
+        console.log(data);
+    })
+    // console.log(_);
     // console.log(initSlides);
 }
 
