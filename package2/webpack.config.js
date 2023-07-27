@@ -30,7 +30,6 @@ module.exports = (env, args) => {
         inject: "body",
         template: path.resolve(process.cwd(), "./src/index.html"),
         scriptLoading: "module",
-
       }),
       //   new MyCustomHooksPlugins(),
       new CleanWebpackPlugin({}),

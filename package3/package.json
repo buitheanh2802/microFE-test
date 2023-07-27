@@ -5,5 +5,13 @@
   "license": "MIT",
   "devDependencies": {
     "vite": "^4.4.7"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "react": "^18.2.0"
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build"
   }
 }
