@@ -31,10 +31,10 @@ module.exports = (env, args) => {
       ]
     },
     output: {
-      // path: path.resolve(process.cwd(), "./build"),
-      publicPath: "auto",
-      // filename: "assets/js/[name].[contenthash:6].bundle.js",
-      // chunkFilename: "assets/js/chunks/[name].chunks.js"
+      path: path.resolve(process.cwd(), "./build"),
+      publicPath: "/",
+      filename: "assets/js/[name].[contenthash:6].bundle.js",
+      chunkFilename: "assets/js/chunks/[name].chunks.js"
     },
     plugins: [
       new Webpack.ProgressPlugin(),
