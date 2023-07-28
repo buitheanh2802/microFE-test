@@ -1,6 +1,7 @@
 const Webpack = require("webpack");
 // const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const deps = require('./package.json').dependencies
 const path = require("path");
 
 module.exports = (env, args) => {
@@ -16,8 +17,23 @@ module.exports = (env, args) => {
         },
       },
     },
+    module: {
+      rules: [
+        {
+          test: /\.(jsx|js)$/i,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-react'
+              ]
+            }
+          }
+        }
+      ]
+    },
     output: {
-      path: path.resolve(process.cwd(), "./build"),
+      // path: path.resolve(process.cwd(), "./build"),
       publicPath: "auto",
     //   filename: "assets/js/[name].[contenthash:6].bundle.js",
     },
@@ -29,8 +45,14 @@ module.exports = (env, args) => {
         filename: 'remoteEntry.js',
         // runtime: 'package3',
         exposes: {
-            './package4': path.resolve(process.cwd(),'./src/index.js')
+            './app': path.resolve(process.cwd(),'./src/app.jsx')
         },
+        shared: {
+          react: {
+            singleton: true,
+            requiredVersion: deps.react
+          }
+        }
       }),
       new HtmlWebpackPlugin({
         filename: "index.html",
@@ -70,12 +92,20 @@ module.exports = (env, args) => {
           warnings: false
         }
       },
-      // static: [{
-      //   directory: path.resolve(process.cwd(),'./node_modules'),
-      //   publicPath: '/dependencies'
-      // }]
+      static: [{
+        directory: path.resolve(process.cwd(),'./src'),
+        publicPath: '/'
+      }],
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+      }
     },
     stats: "errors-only",
     performance: {},
+    resolve: {
+      extensions: ['.jsx','.js','.mjs']
+    }
   };
 };

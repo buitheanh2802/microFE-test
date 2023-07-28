@@ -1,6 +1,6 @@
 
 const configurations = () => {
-    console.log('hello app2');
+    console.log('hello package4');
 }
 
 export default configurations;
