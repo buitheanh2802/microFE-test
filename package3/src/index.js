@@ -1,5 +1,5 @@
-import React from "react";
-import _ from "lodash";
+// import React from "react";
+import _ from "lodash/chunk";
 
 const person = {
     name: "Bui The Anh",
@@ -11,7 +11,7 @@ const configurations = () => {
     // console.log(process.env.NODE_ENV);
     console.log(person);
     console.log(_);
-    console.log(React);
+    // console.log(React);
 }
 
 configurations();

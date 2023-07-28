@@ -1,8 +1,10 @@
-const { Webpack, Compilation } = require("webpack");
+const Webpack = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModifySourcePlugin } = require("modify-source-webpack-plugin");
 const path = require("path");
+
+
 
 module.exports = (env, args) => {
   // console.log(process.env.NODE_ENV);
@@ -24,6 +26,7 @@ module.exports = (env, args) => {
     },
     plugins: [
       // new Webpack.ProgressPlugin(),
+      new Webpack.container.ModuleFederationPlugin(),
       new HtmlWebpackPlugin({
         filename: "index.html",
         minify: false,
