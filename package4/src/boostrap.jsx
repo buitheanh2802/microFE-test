@@ -1,7 +1,6 @@
 import React from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
-const Package1 = React.lazy(() => import("./app"));
-const Package4 = React.lazy(() => import("app2/App"));
+// const Package4 = React.lazy(() => import("package4/app"));
 
 const configurations = () => {
   const element = document.querySelector("#root");
@@ -10,12 +9,12 @@ const configurations = () => {
   // console.log(App);
   root.render(
     <React.Fragment>
-      <React.Suspense fallback="loading...">
+      {/* <React.Suspense fallback="loading...">
         <Package1 />
-      </React.Suspense>
-      <React.Suspense fallback="loading...">
+      </React.Suspense> */}
+      {/* <React.Suspense fallback="loading...">
         <Package4 />
-      </React.Suspense>
+      </React.Suspense> */}
     </React.Fragment>
   );
 };

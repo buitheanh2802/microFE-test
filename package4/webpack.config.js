@@ -1,111 +1,47 @@
-const Webpack = require("webpack");
-// const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const deps = require('./package.json').dependencies
-const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { ModuleFederationPlugin } = require('webpack').container;
+const path = require('path');
 
-module.exports = (env, args) => {
-  // console.log(process.env.NODE_ENV);
-  const current_work_directory = process.cwd();
-  // console.log(current_work_directory);
-  return {
-    entry: {
-      index: {
-        import: path.resolve(process.cwd(), "./src/index.js"),
-        library: {
-          type: "module",
-        },
-      },
-    },
-    module: {
-      rules: [
-        {
-          test: /\.(jsx|js)$/i,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              presets: [
-                '@babel/preset-react'
-              ]
-            }
-          }
-        }
-      ]
-    },
-    output: {
-      // path: path.resolve(process.cwd(), "./build"),
-      publicPath: "auto",
-    //   filename: "assets/js/[name].[contenthash:6].bundle.js",
-    },
-    plugins: [
-      // new Webpack.ProgressPlugin(),
-      new Webpack.container.ModuleFederationPlugin({
-        name: 'package4',
-        // remoteType: ,
-        filename: 'remoteEntry.js',
-        // runtime: 'package3',
-        exposes: {
-            './app': path.resolve(process.cwd(),'./src/app.jsx')
-        },
-        shared: {
-          react: {
-            singleton: true,
-            requiredVersion: deps.react
-          }
-        }
-      }),
-      new HtmlWebpackPlugin({
-        filename: "index.html",
-        minify: false,
-        inject: "body",
-        template: path.resolve(process.cwd(), "./src/index.html"),
-        scriptLoading: "module",
-      }),
-      //  new MyCustomHooksPlugins(),
-      // new CleanWebpackPlugin({}),
-      // new ModifySourcePlugin({
-      //     rules: [{
-      //         test: module => {
-      //             console.log(module.source().source());
-      //         }
-      //     }]
-      // })
-    ],
-    // externals: {
-    //   lodash : `module /dependencies/lodash`
-    // },
-    optimization: {
-      minimize: false,
-    },
-    experiments: {
-      outputModule: true,
-      topLevelAwait: true,
-    },
-    devServer: {
-      port: 3001,
-      hot: true,
-      host: "0.0.0.0",
-      allowedHosts: "all",
-      client: {
-        overlay: {
-          errors: true,
-          warnings: false
-        }
-      },
-      static: [{
-        directory: path.resolve(process.cwd(),'./src'),
-        publicPath: '/'
-      }],
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-        "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-      }
-    },
-    stats: "errors-only",
-    performance: {},
-    resolve: {
-      extensions: ['.jsx','.js','.mjs']
+module.exports = {
+  entry: './src/index',
+  mode: 'development',
+  devServer: {
+    // static: path.join(__dirname, 'build'),
+    port: 3002,
+    headers: {
+      'Access-Control-Allow-Origin': '*'
     }
-  };
+  },
+  output: {
+    publicPath: 'auto',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        options: {
+          presets: ['@babel/preset-react'],
+        },
+      },
+    ],
+  },
+  plugins: [
+    // To learn more about the usage of this plugin, please visit https://webpack.js.org/plugins/module-federation-plugin/
+    new ModuleFederationPlugin({
+      name: 'app3',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './App': './src/app',
+      },
+      shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
+    }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
+  ],
+  resolve: {
+    extensions: ['.jsx','.js']
+  }
 };

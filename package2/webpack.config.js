@@ -13,14 +13,7 @@ module.exports = (env, args) => {
   const isDevMode = args.mode === 'development';
   // console.log(current_work_directory);
   return {
-    entry: {
-      index: {
-        import: path.resolve(process.cwd(), "./src/index.js"),
-        // library: {
-        //   type: "module",
-        // },
-      },
-    },
+    entry: path.resolve(process.cwd(), "./src/index.js"),
     module: {
       rules: [
         {
@@ -32,36 +25,28 @@ module.exports = (env, args) => {
                 '@babel/preset-react'
               ]
             }
-          }
+          },
+          exclude: /node_modules/
         }
       ]
     },
     output: {
-      path: path.resolve(process.cwd(), "./build"),
+      // path: path.resolve(process.cwd(), "./build"),
       publicPath: "auto",
-      filename: "assets/js/[name].[contenthash:6].bundle.js",
-      chunkFilename: "assets/js/chunks/[name].chunks.js"
+      // filename: "assets/js/[name].[contenthash:6].bundle.js",
+      // chunkFilename: "assets/js/chunks/[name].chunks.js"
     },
     plugins: [
       new Webpack.ProgressPlugin(),
       new Webpack.container.ModuleFederationPlugin({
         name: 'package2',
         remotes: {
-          package4: "package4@http://localhost:3001/remoteEntry.js"
+          app2: "app3@http://localhost:3002/remoteEntry.js",
         },
-        shared: {
-          react: {
-            singleton: true,
-            requiredVersion: deps.react
-          }
-        }
+        shared: { react: { singleton: true }, "react-dom": { singleton: true } },
       }),
       new HtmlWebpackPlugin({
-        filename: "index.html",
-        minify: false,
-        inject: "body",
-        template: path.resolve(process.cwd(), "./src/index.html"),
-        scriptLoading: "module",
+        template: path.resolve(process.cwd(), "./public/index.html"),
       }),
       //   new MyCustomHooksPlugins(),
       !isDevMode && new CleanWebpackPlugin({}),
@@ -80,7 +65,7 @@ module.exports = (env, args) => {
       minimize: isDevMode ? false : true,
     },
     experiments: {
-      outputModule: true,
+      // outputModule: true,
       topLevelAwait: true,
     },
     devServer: {
@@ -103,6 +88,61 @@ module.exports = (env, args) => {
     performance: {},
     resolve: {
       extensions: ['.jsx','.js','.mjs']
-    }
+    },
+    mode: args.mode
   };
 };
+
+/*
+
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { ModuleFederationPlugin } = require("webpack").container;
+const ExternalTemplateRemotesPlugin = require("external-remotes-plugin");
+const path = require("path");
+
+module.exports = () => {
+  return {
+    entry: {
+      index: "./src/index.js"
+    },
+    mode: "development",
+    devServer: {
+      static: path.join(__dirname, "dist"),
+      port: 3000,
+    },
+    output: {
+      publicPath: "auto",
+    },
+    module: {
+      rules: [
+        {
+          test: /\.jsx?$/,
+          loader: "babel-loader",
+          exclude: /node_modules/,
+          options: {
+            presets: ["@babel/preset-react"],
+          },
+        },
+      ],
+    },
+    plugins: [
+      new ModuleFederationPlugin({
+        name: "package2",
+        remotes: {
+          app2: "app3@http://localhost:3002/remoteEntry.js",
+        },
+        shared: { react: { singleton: true }, "react-dom": { singleton: true } },
+      }),
+      new ExternalTemplateRemotesPlugin(),
+      new HtmlWebpackPlugin({
+        template: "./public/index.html",
+      }),
+    ],
+    resolve: {
+      extensions: ['.jsx', '.js']
+    }
+  }
+};
+
+
+*/
