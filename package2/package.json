@@ -10,6 +10,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "external-remotes-plugin": "^1.0.0",
     "html-webpack-plugin": "^5.5.3",
+    "lerna": "^7.1.4",
     "live-server": "git+https://github.com/tapio/live-server.git#ad22544",
     "modify-source-webpack-plugin": "^4.1.0",
     "webpack": "^5.88.2",

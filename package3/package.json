@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "lerna": "^7.1.4",
     "vite": "^4.4.7"
   },
   "dependencies": {

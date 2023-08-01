@@ -1,0 +1,20 @@
+0 silly argv {
+0 silly argv   _: [ 'run' ],
+0 silly argv   lernaVersion: '7.1.4',
+0 silly argv   '$0': 'node_modules\\lerna\\dist\\cli.js',
+0 silly argv   script: 'build'
+0 silly argv }
+1 notice cli v7.1.4
+2 verbose packageConfigs Resolving packages based on package.json "workspaces" configuration.
+3 verbose rootPath I:\vnn-webpack\test8
+4 error TypeError [ERR_INVALID_ARG_TYPE]: Failed to process the project graph with "nx-js-graph-plugin".
+4 error The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined
+4 error     at writeFileSync (node:fs:2150:5)
+4 error     at writeLastProcessedLockfileHash (I:\vnn-webpack\test8\node_modules\nx\src\plugins\js\index.js:49:28)
+4 error     at I:\vnn-webpack\test8\node_modules\nx\src\plugins\js\index.js:25:17
+4 error     at Generator.next (<anonymous>)
+4 error     at I:\vnn-webpack\test8\node_modules\tslib\tslib.js:169:75
+4 error     at new Promise (<anonymous>)
+4 error     at Object.__awaiter (I:\vnn-webpack\test8\node_modules\tslib\tslib.js:165:16)
+4 error     at Object.processProjectGraph (I:\vnn-webpack\test8\node_modules\nx\src\plugins\js\index.js:15:57)
+4 error     at I:\vnn-webpack\test8\node_modules\nx\src\project-graph\build-project-graph.js:121:38
