@@ -6,12 +6,14 @@
   "devDependencies": {
     "lerna": "^7.1.4"
   },
-  "workspaces": [
-    "./package1",
-    "./package2",
-    "./package3",
-    "./package4"
-  ],
+  "workspaces": {
+    "packages": [
+      "./package1",
+      "./package2",
+      "./package3",
+      "./package4"
+    ]
+  },
   "scripts": {
     "dev": "lerna run start",
     "build": "lerna run build"
