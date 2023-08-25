@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import App from "./app";
 
 const configuration = (): JSX.Element => {

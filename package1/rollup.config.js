@@ -55,7 +55,7 @@ module.exports = defineConfig((context) => {
                 babelrc: false,
                 presets: [
                     ['@babel/preset-react',{
-                        runtime: "classic"
+                        runtime: "automatic"
                     }],
                     '@babel/preset-typescript'
                 ],

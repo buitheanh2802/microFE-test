@@ -10,7 +10,7 @@
         "esModuleInterop": true,
         "allowUnusedLabels": true,
         "checkJs": false,
-        "jsx": "react",
+        "jsx": "react-jsx",
         "noImplicitAny": true,
         "noImplicitThis": true,
         "noImplicitReturns": true,
